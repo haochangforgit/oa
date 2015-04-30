@@ -12,15 +12,32 @@ import com.lighting.platform.base.web.controller.BaseController;
 @Controller
 public class SecurityController extends BaseController
 {
-	@Autowired
+	//@Autowired
 	private String loginSuccessUrl;
 	
 	
-	@Autowired
+	//@Autowired
 	private String loginUrl;
 	
+	/***
+	 * 登录页面
+	 * @return
+	 */
+	@RequestMapping("/login.go")
+	public String login()
+	{
+		return "/login";
+	}
 	
-	@RequestMapping("/verifyToken")
+	
+	/***
+	 * 验证表单
+	 * @param userId
+	 * @param password
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/verifyToken.go")
 	public void verifyToken(String userId , String password , HttpServletRequest request,HttpServletResponse response)
 	{
 		
