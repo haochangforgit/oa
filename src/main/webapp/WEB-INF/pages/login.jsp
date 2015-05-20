@@ -1,47 +1,66 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	%>
-	
-    <jsp:directive.page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" />
-    <jsp:text>
-        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
-    </jsp:text>
-    <jsp:text>
-        <![CDATA[ <!DOCTYPE html> ]]>
-    </jsp:text>
-	<html>
-		<head>
-			<base href="<%=basePath%>">
-			<meta charset="utf-8">
-			<title>登录</title>
-			<link rel="stylesheet" href="<%=basePath%>static/css/style.css" media="screen" type="text/css" />
-		</head>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+    	<base href="<%=basePath%>">
+    		
+        <meta charset="utf-8">
+        <title>Login</title>
+		<meta name="keywords" content="Login" />
+		<meta name="description" content="Login" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="<%=basePath%>static/css/reset.css">
+        <link rel="stylesheet" href="<%=basePath%>static/css/supersized.css">
+        <link rel="stylesheet" href="<%=basePath%>static/css/style.css">
+		<script type="text/javascript">
+		</script>
+    </head>
+
+    <body>
+        <div class="page-container">
+            <h1>登录</h1>
+            <form action="verifyToken.go" method="post">
+                <input type="text" name="loginName" placeholder="用户名" value="${loginName}">
+                <input type="password" name="password" placeholder="密码">
+                <div>
+	                <span>
+	                	
+					</span>
+				</div>
+                <button type="submit">提交</button>
+                
+            </form>
+            
+            <div class="connect">
+                <p>Or connect with:</p>
+                <p>
+                    <a class="facebook" href=""></a>
+                    <a class="twitter" href=""></a>
+                </p>
+            </div>
+        </div>
 		
-		<body>
-		
-			<center>
-				<form>
-					<fieldset>
-		
-						<legend>Login</legend>
-						
-						<!-- Entypo &#128100;	= User -->
-						<input type="text" name="username" id="username" placeholder="Username" pattern="^[a-zA-Z0-9]{3,12}$"
-							data-validation-msg="Username must be 2	- 12 characters" required />
-						<label for="username" data-icon="&#128100;">Username</label>
-		
-						<!-- Entypo &#128274;	= Locked -->
-						<input type="password" name="password" id="password" placeholder="Password" pattern="^[a-zA-Z0-9]{3,12}$"
-							data-validation-msg="Password must be 2-12 characters" required />
-						<label for="password" data-icon="&#128274;">Password</label>
-						<!-- Entypo &#58542; = Right Arrow -->
-						<button value="Submit" data-icon="&#58542;" />
-					</fieldset>
-				</form>
-			</center>
-		</body>
-	</html>
-</jsp:root>
+        <!-- Javascript -->
+        <script src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script>
+        <script src="<%=basePath%>static/js/supersized.3.2.7.min.js"></script>
+        <script src="<%=basePath%>static/js/supersized-init.js"></script>
+        <script src="<%=basePath%>static/js/scripts.js"></script>
+
+    </body>
+
+</html>
+<script >
+	window.onload = function ()
+	{
+		//alert('${error}');
+	}
+</script>
+
