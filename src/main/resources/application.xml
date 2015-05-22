@@ -20,4 +20,6 @@
 	<!-- 加载hibernate相关配置 -->
 	<import resource="application-database.xml" />
 	
+	<!-- 加载登录安全相关配置 -->
+	<import resource="application-security.xml" />
 </beans>

@@ -16,12 +16,14 @@ import com.lighting.service.service.IUserService;
 @Controller
 public class SecurityController extends BaseController
 {
+	/*** 登录成功跳转地址**/
 	@Autowired
 	private String loginSuccessUrl;
 	
 	
+	/*** 登录页面 **/
 	@Autowired
-	private String loginUrl;
+	private String loginPageUrl;
 	
 	
 	@Autowired
@@ -34,7 +36,7 @@ public class SecurityController extends BaseController
 	@RequestMapping("/login.go")
 	public String login()
 	{
-		return "/login";
+		return loginPageUrl;
 	}
 	
 	
@@ -69,12 +71,17 @@ public class SecurityController extends BaseController
 		{
 			errorCode = "1";//用户名密码错误
 			
-			redirectUrl = "";
+			redirectUrl = login();
 		}
 		
 		if(errorCode != null)
+		{
 			modelMap.put("errorCode", errorCode);
-		
+			
+			modelMap.put("loginName", loginName);
+			modelMap.put("password", password);
+			
+		}
 		
 		return redirectUrl;
 	}

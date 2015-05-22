@@ -9,6 +9,14 @@
             http://www.springframework.org/schema/mvc   
             http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
+	<!-- 登录页面 -->
+    <bean id="loginPageUrl" class="java.lang.String">
+    	<constructor-arg value="/login"></constructor-arg>
+    </bean>
+    
+    <!-- 登录成功跳转页面 -->
+    <bean id="loginSuccessUrl" class="java.lang.String">
+    	<constructor-arg value="/index"></constructor-arg>
+    </bean>
 	
-		
 </beans>

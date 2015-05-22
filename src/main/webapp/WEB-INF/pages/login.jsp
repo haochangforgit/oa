@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,17 +29,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="page-container">
             <h1>登录</h1>
             <form action="verifyToken.go" method="post">
-                <input type="text" name="loginName" placeholder="用户名" value="${loginName}">
-                <input type="password" name="password" placeholder="密码">
-                <div>
-	                <span>
-	                	
-					</span>
-				</div>
+                <input type="text" name="loginName" placeholder="用户名"  value="${loginName}" required />
+                <input type="password" name="password" placeholder="密码" value="${password}" required />
+
                 <button type="submit">提交</button>
                 
             </form>
-            
+                <div>
+	                <span>
+	                	123
+					</span>
+				</div>
             <div class="connect">
                 <p>Or connect with:</p>
                 <p>

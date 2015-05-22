@@ -9,8 +9,10 @@
 
 
 	<!-- <mvc:resources mapping="/static/**" location="/static/" /> -->
+	
 	<!-- 先将静态资源拦截，否则将会被spring mvc拦截 -->
 	<mvc:default-servlet-handler/>
+	
 	<!-- 视图解析器 -->
  	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
