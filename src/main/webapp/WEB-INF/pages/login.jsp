@@ -35,9 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <button type="submit">提交</button>
                 
             </form>
-                <div>
+                <div class="error">
 	                <span>
-	                	123
+	                	<c:choose>
+		                	<c:when test="${errorCode eq '0'}"> </c:when>
+		                	<c:when test="${errorCode eq '1'}"> </c:when>
+		                	<c:when test="${errorCode eq '2'}"> </c:when>
+		                	<c:otherwise></c:otherwise>
+	                	</c:choose>
 					</span>
 				</div>
             <div class="connect">
@@ -54,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="<%=basePath%>static/js/supersized.3.2.7.min.js"></script>
         <script src="<%=basePath%>static/js/supersized-init.js"></script>
         <script src="<%=basePath%>static/js/scripts.js"></script>
-
+		
     </body>
 
 </html>

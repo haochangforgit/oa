@@ -1,5 +1,6 @@
 package com.lighting.oa.login.security;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,14 @@ public class SecurityController extends BaseController
 	private String loginPageUrl;
 	
 	
+	/*** 用户service **/
 	@Autowired
 	private IUserService userService;
 	
 	/***
 	 * 登录页面
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/login.go")
 	public String login()

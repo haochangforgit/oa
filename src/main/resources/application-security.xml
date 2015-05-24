@@ -11,7 +11,7 @@
 	
 	<!-- 登录页面 -->
     <bean id="loginPageUrl" class="java.lang.String">
-    	<constructor-arg value="/login"></constructor-arg>
+    	<constructor-arg value="/login.jsp"></constructor-arg>
     </bean>
     
     <!-- 登录成功跳转页面 -->
