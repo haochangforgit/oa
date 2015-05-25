@@ -3,9 +3,11 @@ package com.lighting.oa.login.security;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lighting.platform.base.entity.User;
@@ -37,9 +39,9 @@ public class SecurityController extends BaseController
 	 * @throws IOException 
 	 */
 	@RequestMapping("/login.go")
-	public String login()
+	public void login(HttpServletRequest request , HttpServletResponse response) throws IOException
 	{
-		return loginPageUrl;
+		response.sendRedirect(request.getContextPath() + loginPageUrl);
 	}
 	
 	
@@ -51,42 +53,35 @@ public class SecurityController extends BaseController
 	 * @param response
 	 */
 	@RequestMapping("/verifyToken.go")
-	public synchronized String verifyToken(String loginName , String password , ModelMap modelMap)
+	public synchronized void verifyToken(String loginName , String password , HttpServletRequest request , HttpServletResponse response) throws IOException
 	{
 		User user = userService.getByLoginNameAndPwd(loginName, password);
 		
 		String errorCode = null;
 		
-		String redirectUrl = "";
+		StringBuilder redirectUrl = new StringBuilder(loginPageUrl);
 		
 		if(user != null)
 		{
 			if(UserStatu.ENABLE.equals(user.getUserStatu()))
-				errorCode = "2";//帐号被停用
+				errorCode = "1";//帐号被停用
 			else
 			{
 				OnLine.login(user);
 				
-				redirectUrl = loginSuccessUrl;
+				redirectUrl = new StringBuilder(loginSuccessUrl);
 			}
 		}
 		else
 		{
-			errorCode = "1";//用户名密码错误
-			
-			redirectUrl = login();
+			errorCode = "0";//用户名密码错误
 		}
 		
 		if(errorCode != null)
-		{
-			modelMap.put("errorCode", errorCode);
-			
-			modelMap.put("loginName", loginName);
-			modelMap.put("password", password);
-			
-		}
+			redirectUrl.append("?errorCode"+errorCode);
 		
-		return redirectUrl;
+		
+		response.sendRedirect(request.getContextPath() + redirectUrl.toString());
 	}
 	
 	
@@ -96,5 +91,12 @@ public class SecurityController extends BaseController
 		
 		return null;
 	}
+	
+	@RequestMapping("/index.go")
+	public String index()
+	{
+		return "/index";
+	}
+	
 }
 

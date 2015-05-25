@@ -16,7 +16,7 @@
     
     <!-- 登录成功跳转页面 -->
     <bean id="loginSuccessUrl" class="java.lang.String">
-    	<constructor-arg value="/index"></constructor-arg>
+    	<constructor-arg value="/index.go"></constructor-arg>
     </bean>
 	
 </beans>
