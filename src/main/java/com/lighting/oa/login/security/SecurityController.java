@@ -64,7 +64,9 @@ public class SecurityController extends BaseController
 		if(user != null)
 		{
 			if(UserStatu.ENABLE.equals(user.getUserStatu()))
+			{
 				errorCode = "1";//帐号被停用
+			}
 			else
 			{
 				OnLine.login(user);
@@ -78,7 +80,7 @@ public class SecurityController extends BaseController
 		}
 		
 		if(errorCode != null)
-			redirectUrl.append("?errorCode"+errorCode);
+			redirectUrl.append("?errorCode="+errorCode);
 		
 		
 		response.sendRedirect(request.getContextPath() + redirectUrl.toString());
