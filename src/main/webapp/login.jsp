@@ -18,9 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <meta name="author" content="">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="<%=basePath%>static/css/reset.css">
-        <link rel="stylesheet" href="<%=basePath%>static/css/supersized.css">
-        <link rel="stylesheet" href="<%=basePath%>static/css/style.css">
+        <link rel="stylesheet" href="<%=basePath%>assets/css/reset.css">
+        <link rel="stylesheet" href="<%=basePath%>assets/css/supersized.css">
+        <link rel="stylesheet" href="<%=basePath%>assets/css/style.css">
 		<script type="text/javascript">
 		</script>
     </head>
@@ -35,13 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <button type="submit">提交</button>
                 
             </form>
-                <div class="error">
+                <div>
 	                <span>
 	                	<c:choose>
-		                	<c:when test="${errorCode eq '0'}"> </c:when>
-		                	<c:when test="${errorCode eq '1'}"> </c:when>
-		                	<c:when test="${errorCode eq '2'}"> </c:when>
-		                	<c:otherwise></c:otherwise>
+		                	<c:when test="${param.errorCode eq '0'}">用户名密码错误</c:when>
+		                	<c:when test="${param.errorCode eq '1'}">帐号被停用</c:when>
+		                	<c:when test="${param.errorCode eq '2'}">帐号已过期</c:when>
+		                	<c:when test="${param.errorCode eq null}"></c:when>
+		                	<c:otherwise>其他错误</c:otherwise>
 	                	</c:choose>
 					</span>
 				</div>
@@ -55,10 +56,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 		
         <!-- Javascript -->
-        <script src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script>
-        <script src="<%=basePath%>static/js/supersized.3.2.7.min.js"></script>
-        <script src="<%=basePath%>static/js/supersized-init.js"></script>
-        <script src="<%=basePath%>static/js/scripts.js"></script>
+        <script src="<%=basePath%>assets/js/jquery-1.8.2.min.js"></script>
+        <script src="<%=basePath%>assets/js/supersized.3.2.7.min.js"></script>
+        <script src="<%=basePath%>assets/js/supersized-init.js"></script>
+        <script src="<%=basePath%>assets/js/scripts.js"></script>
 		
     </body>
 

@@ -13,6 +13,10 @@
 	<!-- 先将静态资源拦截，否则将会被spring mvc拦截 -->
 	<mvc:default-servlet-handler/>
 	
+	<mvc:interceptors>
+		<bean class="com.lighting.platform.base.web.RequestInterceptorAdapter"></bean>
+	</mvc:interceptors>
+	
 	<!-- 视图解析器 -->
  	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"

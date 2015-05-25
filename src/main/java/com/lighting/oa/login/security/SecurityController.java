@@ -1,11 +1,13 @@
 package com.lighting.oa.login.security;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +46,11 @@ public class SecurityController extends BaseController
 		response.sendRedirect(request.getContextPath() + loginPageUrl);
 	}
 	
+	public static void main(String[] args)
+	{
+		System.out.println(DigestUtils.md5Hex("1"));//cfcd208495d565ef66e7dff9f98764da
+	}
+	
 	
 	/***
 	 * 验证表单
@@ -63,9 +70,13 @@ public class SecurityController extends BaseController
 		
 		if(user != null)
 		{
-			if(UserStatu.ENABLE.equals(user.getUserStatu()))
+			if(!UserStatu.ENABLE.equals(user.getUserStatu()))
 			{
 				errorCode = "1";//帐号被停用
+			}
+			else if(user.getEndTime() != null && user.getEndTime().getTime()  <= new Date().getTime())
+			{
+				errorCode = "2";//帐号已过期
 			}
 			else
 			{
@@ -75,13 +86,11 @@ public class SecurityController extends BaseController
 			}
 		}
 		else
-		{
 			errorCode = "0";//用户名密码错误
-		}
+		
 		
 		if(errorCode != null)
 			redirectUrl.append("?errorCode="+errorCode);
-		
 		
 		response.sendRedirect(request.getContextPath() + redirectUrl.toString());
 	}
@@ -90,7 +99,6 @@ public class SecurityController extends BaseController
 	@RequestMapping("/menus.go")
 	public List menus()
 	{
-		
 		return null;
 	}
 	
